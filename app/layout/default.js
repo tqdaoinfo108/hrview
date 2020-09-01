@@ -31,7 +31,7 @@ class AppLayout extends React.Component {
     static propTypes = {
         children: PropTypes.node.isRequired
     }
-
+    
     render() {
         const { children } = this.props;
         
@@ -53,13 +53,13 @@ class AppLayout extends React.Component {
                     </Layout.Content>
 
                     { /* -- Theme Selector (DEMO) ----*/ }
-                    <PageConfigConsumer>
+                    {/* <PageConfigConsumer>
                     {
                         ({ sidebarHidden, navbarHidden }) => (
                             <ThemeSelector styleDisabled={ sidebarHidden && navbarHidden } />
                         )
                     }
-                    </PageConfigConsumer>
+                    </PageConfigConsumer> */}
                 </Layout>
             </ThemeProvider>
         );

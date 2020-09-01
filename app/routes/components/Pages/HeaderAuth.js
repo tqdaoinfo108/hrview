@@ -32,8 +32,8 @@ HeaderAuth.propTypes = {
     text: PropTypes.node,
 };
 HeaderAuth.defaultProps = {
-    title: "Đang loading data...",
-    text: "Quản lý doanh nghiệp.",
+    title: "Waiting for Data...",
+    text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure voluptas aperiam odit, reiciendis dicta nihil.",
     iconClassName: "text-theme"
 };
 

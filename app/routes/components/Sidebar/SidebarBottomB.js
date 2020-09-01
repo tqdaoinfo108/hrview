@@ -30,7 +30,7 @@ const SidebarBottomB = () => (
                                 <Media left middle className="mr-3">
                                     <Avatar.Image
                                         size="md"
-                                        src={ randomAvatar() }
+                                        src='./images/avatars/default.png'
                                         addOns={[
                                             <AvatarAddOn.Icon 
                                                 className="fa fa-circle"

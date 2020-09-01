@@ -5,7 +5,7 @@ import { FooterText } from '../FooterText';
 
 const FooterAuth = ({ className }) => (
     <p className={ classNames(className, 'small') }>
-        <FooterText />
+       @2020 Group 1
     </p>
 );
 FooterAuth.propTypes = {

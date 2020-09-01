@@ -16,7 +16,7 @@ import {
 import { HeaderMain } from "../../components/HeaderMain";
 import { ProfileLeftNav } from "./../../components/Profile/ProfileLeftNav";
 import { ProfileHeader } from "./../../components/Profile/ProfileHeader";
-import { TrTableBorderless } from "./../../Tables/Tables/components/TrTableBorderless";
+import { TrTableBorderless } from "./../../HR/Tables/components/TrTableBorderless";
 
 const BillingEdit = () => (
     <React.Fragment>

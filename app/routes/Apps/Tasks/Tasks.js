@@ -32,7 +32,6 @@ const Tasks = (props) => (
                         title={props.match.params.type === "list"?"Tasks List":"Tasks Grid"} 
                         linkList="/apps/tasks/list"
                         linkGrid="/apps/tasks/grid"
-                        btnShowKanban
                     />
 
                     { 

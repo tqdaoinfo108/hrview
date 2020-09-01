@@ -56,7 +56,7 @@ export const LayoutNavbar = () => (
                     <DropdownToggle nav>
                         <Avatar.Image
                             size="sm"
-                            src={ randomAvatar() }
+                            src='./images/avatars/default.png'
                             addOns={[
                                 <AvatarAddOn.Icon 
                                     className="fa fa-circle"

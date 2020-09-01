@@ -17,7 +17,7 @@ const ProfileHeader = () => (
             <Media left middle className="mr-3 align-self-center">
               <Avatar.Image
                 size="lg"
-                src={ randomAvatar() }
+                src='./images/avatars/default.png'
                 className="mr-2"
                 addOns={[
                     <AvatarAddOn.Icon 

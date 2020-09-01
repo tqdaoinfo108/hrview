@@ -6,8 +6,13 @@ import {
 } from 'react-router';
 
 // ----------- Pages Imports ---------------
+import Analytics from './Dashboards/Analytics';
 import ProjectsDashboard from './Dashboards/Projects';
-
+import System from './Dashboards/System';
+import Monitor from './Dashboards/Monitor'; 
+import Financial from './Dashboards/Financial';
+import Stock from './Dashboards/Stock';
+import Reports from './Dashboards/Reports';
 
 import Widgets from './Widgets';
 
@@ -56,9 +61,9 @@ import DatePicker from './Forms/DatePicker';
 import Dropzone from './Forms/Dropzone';
 import Sliders from './Forms/Sliders';
 
-import Tables from './Tables/Tables';
-import ExtendedTable from './Tables/ExtendedTable';
-import AgGrid from './Tables/AgGrid';
+import Tables from './HR/Tables';
+import HRStaff from './HR/Staff';
+import AgGrid from './HR/AgGrid';
 
 import AccountEdit from './Apps/AccountEdit';
 import BillingEdit from './Apps/BillingEdit';
@@ -111,7 +116,13 @@ export const RoutedContent = () => {
         <Switch>
             <Redirect from="/" to="/pages/login" exact />
             
+            <Route path="/dashboards/analytics" exact component={Analytics} />
             <Route path="/dashboards/projects" exact component={ProjectsDashboard} />
+            <Route path="/dashboards/system" exact component={System} />
+            <Route path="/dashboards/monitor" exact component={Monitor} />
+            <Route path="/dashboards/financial" exact component={Financial} />
+            <Route path="/dashboards/stock" exact component={Stock} />
+            <Route path="/dashboards/reports" exact component={Reports} />
 
             <Route path='/widgets' exact component={Widgets} />
             
@@ -167,9 +178,9 @@ export const RoutedContent = () => {
             <Route component={ ReCharts } path="/graphs/re-charts" />
 
             { /*    Tables Routes   */ }
-            <Route component={ Tables } path="/tables/tables" />
-            <Route component={ ExtendedTable } path="/tables/extended-table" />
-            <Route component={ AgGrid } path="/tables/ag-grid" />
+            <Route component={ Tables } path="/HR/tables" />
+            <Route component={ HRStaff } path="/hr/staff" />
+            <Route component={ AgGrid } path="/HR/ag-grid" />
 
             { /*    Apps Routes     */ }
             <Route component={ AccountEdit } path="/apps/account-edit" />

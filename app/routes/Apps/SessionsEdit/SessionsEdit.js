@@ -12,7 +12,7 @@ import {
 import { HeaderMain } from "../../components/HeaderMain";
 import { ProfileLeftNav } from "../../components/Profile/ProfileLeftNav";
 import { ProfileHeader } from "../../components/Profile/ProfileHeader";
-import { TrTableResponsive } from "./../../Tables/Tables/components/TrTableResponsive";
+import { TrTableResponsive } from "./../../HR/Tables/components/TrTableResponsive";
 
 const BillingEdit = () => (
     <React.Fragment>

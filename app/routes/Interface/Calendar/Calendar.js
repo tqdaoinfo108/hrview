@@ -82,6 +82,9 @@ export class Calendar extends React.Component {
     }
   
     render() {
+        const onSelected = () => {
+            console.log('33ksdufhds')
+        }
         return (
             <Container>
                 <HeaderMain 
@@ -105,6 +108,7 @@ export class Calendar extends React.Component {
                     onSelectSlot={this.newEvent}
                     defaultView={'month'}
                     defaultDate={new Date()}
+                    onSelected={onSelected}
                 />
             </Container>
         );

@@ -64,18 +64,7 @@ const ProjectsSmHeader = (props ) => (
                     <UncontrolledTooltip placement="bottom" target="tooltipShowGrid">
                         Show Grid
                     </UncontrolledTooltip>
-                        {
-                            props.btnShowKanban && (
-                                <React.Fragment>
-                                    <Button tag={ NavLink } to={ `${ props.linkKanban }` } color="secondary" outline className="align-self-center" id="tooltipShowKanban">
-                                        <i className="fa-fw fa fa-trello"></i>
-                                    </Button>
-                                    <UncontrolledTooltip placement="bottom" target="tooltipShowKanban">
-                                        Show Kanban
-                                    </UncontrolledTooltip>
-                                 </React.Fragment>
-                                )
-                        }
+                        
                 </ButtonGroup>
                 <ButtonGroup>
                     <Button color="primary" className="align-self-center" id="tooltipAddNew">
