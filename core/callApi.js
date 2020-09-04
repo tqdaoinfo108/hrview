@@ -1,7 +1,7 @@
 import axios from 'axios';
 const config = {
   api: {
-    BASE_URL: "https://hrdotnet.azurewebsites.net/"
+    BASE_URL: "https://hrdotnet.azurewebsites.net"
   }
 }
 const header = {

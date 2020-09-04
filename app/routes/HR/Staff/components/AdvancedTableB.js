@@ -5,10 +5,25 @@ import moment from 'moment';
 import _ from 'lodash';
 import faker from 'faker/locale/en_US';
 
-import {Avatar, Badge, Button, ButtonGroup, Col, Container, Row} from '../../../../components';
+import {
+  Avatar,
+  Badge,
+  Button,
+  ButtonGroup,
+  Col,
+  Container,
+  Form,
+  FormGroup,
+  Input,
+  Label,
+  Row,
+  UncontrolledModal
+} from '../../../../components';
 import {CustomExportCSV} from './CustomExportButton';
 import {randomArray, randomAvatar} from '../../../../utilities';
 import {callApi} from "../../../../../core/callApi";
+import ModalHeader from "reactstrap/es/ModalHeader";
+import ModalBody from "reactstrap/es/ModalBody";
 
 const generateRow = (id) => ({
   id,
@@ -49,29 +64,47 @@ export class AdvancedTableB extends React.Component {
 
     this.state = {
       users: _.times(0, generateRow),
-      isLoaded: false
+      isLoaded: false,
+      isShowAdd: false,
+      StaffCode: "daotq@way.vn",
+      Passwords: "123456",
+      FullName: "New Member" + Math.random(),
+      StatusID: 1,
+      CompanyID: 1,
+      PositionsID: 1,
+      DepartmentsID: 1
+
     }
 
   }
 
   componentDidMount() {
-    // const dataValue ={};
-    const initData = async () => {
-      callApi("staff/getAll", "GET", null).then(res => {
-        this.setState({users: res.data})
-        this.setState({isLoaded: true})
-      })
-      // let token = await localStorage.getItem('token');
-      // token = JSON.parse(token);
-      // await axios.get('https://localhost:5000/api/staff/getAll', { headers: { Authorization: 'Bearer ' + token } }).then(
-      //     res => {
-      //         this.setState({ users: res.data })
-      //         this.setState({ isLoaded: true })
-      //     }
-      // )
+    this.loadDataUser();
+  }
+
+  loadDataUser = () => {
+    callApi("staff/getAll", "GET", null).then(res => {
+      this.setState({users: res.data})
+      this.setState({isLoaded: true})
+    })
+  }
+
+  onSubmitCreateStaff = () => {
+    const {StaffCode, Passwords, FullName, StatusID, CompanyID, PositionsID, DepartmentsID} = this.state;
+    let objStaff = {
+      "StaffCode": StaffCode,
+      "Passwords": Passwords,
+      "FullName": FullName,
+      "StatusID": Number.parseInt(StatusID),
+      "CompanyID": Number.parseInt(CompanyID),
+      "PositionsID": Number.parseInt(PositionsID),
+      "DepartmentsID": Number.parseInt(DepartmentsID)
     }
-    // this.props.state.users = dataValue;
-    initData();
+    console.log('Logging::: From Class: AdvancedTableB.js, Function: onSubmitCreateStaff, Line: 103, Data Log::: ', objStaff);
+    callApi("staff/create", "POST", objStaff).then(res => {
+      console.log('Logging::: From Class: AdvancedTableB.js, Function: , Line: 88, Data Log::: ', res);
+      this.loadDataUser()
+    })
   }
 
   handleAddRow() {
@@ -208,14 +241,157 @@ export class AdvancedTableB extends React.Component {
                       >
                         Xuất .csv
                       </CustomExportCSV>
-                      <Button
-                        size="sm"
-                        outline
-                        onClick={this.handleAddRow.bind(this)}
-                      >
-                        {/*// API api/staff/create*/}
+
+                      <Button onClick={() => this.setState({isShowAdd: true})} color="primary"
+                              className="align-self-center" id="tooltipAddNew">
                         Thêm <i className="fa fa-fw fa-plus"></i>
                       </Button>
+                      {/*// API modal api/todolist/create*/}
+
+                      <UncontrolledModal isOpen={this.state.isShowAdd} placement="bottom" target="tooltipAddNew">
+                        <ModalHeader tag="h6">
+                          Tạo sự kiện
+                        </ModalHeader>
+                        <ModalBody>
+                          <Form>
+
+                            <FormGroup row>
+                              <Label for="input" sm={3}>
+                                StaffCode
+                              </Label>
+                              <Col sm={9}>
+                                <Input
+                                  type="input"
+                                  name="title"
+                                  id="title"
+                                  placeholder=""
+                                  onChange={(e) => {
+                                    this.setState({StaffCode: e.target.value})
+                                  }}
+                                />
+                              </Col>
+                            </FormGroup>
+
+                            <FormGroup row>
+                              <Label for="input" sm={3}>
+                                Passwords
+                              </Label>
+                              <Col sm={9}>
+                                <Input
+                                  type="input"
+                                  name="title"
+                                  id="Passwords"
+                                  placeholder=""
+                                  onChange={(e) => {
+                                    this.setState({Passwords: e.target.value})
+                                  }}
+                                />
+                              </Col>
+                            </FormGroup>
+
+                            <FormGroup row>
+                              <Label for="input" sm={3}>
+                                FullName
+                              </Label>
+                              <Col sm={9}>
+                                <Input
+                                  type="input"
+                                  name="title"
+                                  id="title"
+                                  placeholder=""
+                                  onChange={(e) => {
+                                    this.setState({FullName: e.target.value})
+                                  }}
+                                />
+                              </Col>
+                            </FormGroup>
+
+                            <FormGroup row>
+                              <Label for="input" sm={3}>
+                                StatusID
+                              </Label>
+                              <Col sm={9}>
+                                <Input
+                                  type="input"
+                                  name="title"
+                                  id="title"
+                                  placeholder=""
+                                  onChange={(e) => {
+                                    this.setState({StatusID: Number(e.target.value)})
+                                  }}
+                                />
+                              </Col>
+                            </FormGroup>
+
+
+                            <FormGroup row>
+                              <Label for="input" sm={3}>
+                                CompanyID
+                              </Label>
+                              <Col sm={9}>
+                                <Input
+                                  type="input"
+                                  name="title"
+                                  id="title"
+                                  placeholder=""
+                                  onChange={(e) => {
+                                    this.setState({CompanyID: Number(e.target.value)})
+                                  }}
+                                />
+                              </Col>
+                            </FormGroup>
+
+
+                            <FormGroup row>
+                              <Label for="textArea" sm={3}>
+                                PositionsID
+                              </Label>
+                              <Col sm={9}>
+                                <Input
+                                  onChange={(e) => {
+                                    this.setState({PositionsID: Number(e.target.value)})
+                                  }}
+                                  type="textarea"
+                                  name="description"
+                                  placeholder="Enter text..."
+                                />
+                              </Col>
+                            </FormGroup>
+
+                            <FormGroup row>
+                              <Label for="textArea" sm={3}>
+                                DepartmentsID
+                              </Label>
+                              <Col sm={9}>
+                                <Input
+                                  onChange={(e) => {
+                                    this.setState({DepartmentsID: Number(e.target.value)})
+                                  }}
+                                  type="textarea"
+                                  name="description"
+                                  placeholder="Enter text..."
+                                />
+                              </Col>
+                            </FormGroup>
+
+                            <FormGroup row>
+                              <Label sm={3}>
+
+                              </Label>
+                              <Col sm={5}>
+                                <Button onClick={this.onSubmitCreateStaff} color="primary">
+                                  Create
+                                </Button>
+
+                                <UncontrolledModal.Close color="warning" className="text-primary">
+                                  Close
+                                </UncontrolledModal.Close>
+                              </Col>
+                            </FormGroup>
+
+                          </Form>
+                        </ModalBody>
+                      </UncontrolledModal>
                     </ButtonGroup>
                   </div>
                 </div>
