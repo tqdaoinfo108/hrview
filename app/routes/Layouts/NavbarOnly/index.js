@@ -1,5 +1,5 @@
-import { NavbarOnly } from './NavbarOnly';
-import { LayoutNavbar } from './components/LayoutNavbar';
+import {NavbarOnly} from './NavbarOnly';
+import {LayoutNavbar} from './components/LayoutNavbar';
 
 NavbarOnly.Navbar = LayoutNavbar;
 

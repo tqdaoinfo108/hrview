@@ -1,3 +1,3 @@
-import { CropImage } from './CropImage';
+import {CropImage} from './CropImage';
 
 export default CropImage;

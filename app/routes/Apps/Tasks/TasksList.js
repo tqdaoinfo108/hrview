@@ -1,67 +1,60 @@
-import React, { useEffect,useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Moment from 'moment';
 
-import {
-    Pagination,
-    PaginationItem,
-    PaginationLink,
-    Card,
-    CardFooter,
-    Table
-} from './../../../components';
+import {Card, Table} from './../../../components';
 
-import { TrTableTasksList } from "./components/TrTableTasksList";
+import {TrTableTasksList} from "./components/TrTableTasksList";
 import {callApi} from "../../../../core/callApi";
 
 const TasksList = (props) => {
-    const [listTask, setListTask] = useState([]);
-    const [todoList, setTodoList] = useState([]);
+  const [listTask, setListTask] = useState([]);
+  const [todoList, setTodoList] = useState([]);
 
-    useEffect(() => {
-        Moment.locale('vi');
+  useEffect(() => {
+    Moment.locale('vi');
 
-        const initData = async () => {
-            callApi("dashboard/gettask", "GET", null).then(res => {
-                setListTask(res.data);
-            })
+    const initData = async () => {
+      callApi("dashboard/gettask", "GET", null).then(res => {
+        setListTask(res.data);
+      })
 
-            callApi("todolist/getall", "GET", null).then(res => {
-                setTodoList(res.data);
-            })
+      callApi("todolist/getall", "GET", null).then(res => {
+        setTodoList(res.data);
+      })
 
-        }
-        initData();
-    }, [])
+    }
+    initData();
+  }, [])
 
-    // api/todolist/getall
-    const renderListTask = todoList.map((item) =>
-        <TrTableTasksList data={item} />
-    );
+  // api/todolist/getall
+  const renderListTask = todoList.map((item) =>
+    <TrTableTasksList data={item}/>
+  );
 
-    return (
-        <Card className="mb-3">
-            { /* START Table */}
-            <div className="table-responsive-xl">
-                <Table className="mb-0" hover>
-                    <thead>
-                        <tr>
-                            <th className="align-middle bt-0">#</th>
-                            <th className="align-middle bt-0">Mức độ</th>
-                            <th className="align-middle bt-0">Tiêu đề & nội dung</th>
-                            <th className="align-middle bt-0">Người thực hiện</th>
-                            <th className="align-middle bt-0">Cập nhật</th>
-                            <th className="align-middle bt-0 text-right">
-                                Lựa chọn
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {renderListTask}
-                    </tbody>
-                </Table>
-            </div>
-            { /* END Table */}
-            {/* <CardFooter className="d-flex justify-content-center pb-0">
+  return (
+    <Card className="mb-3">
+      { /* START Table */}
+      <div className="table-responsive-xl">
+        <Table className="mb-0" hover>
+          <thead>
+          <tr>
+            <th className="align-middle bt-0">#</th>
+            <th className="align-middle bt-0">Mức độ</th>
+            <th className="align-middle bt-0">Tiêu đề & nội dung</th>
+            <th className="align-middle bt-0">Người thực hiện</th>
+            <th className="align-middle bt-0">Cập nhật</th>
+            <th className="align-middle bt-0 text-right">
+              Lựa chọn
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          {renderListTask}
+          </tbody>
+        </Table>
+      </div>
+      { /* END Table */}
+      {/* <CardFooter className="d-flex justify-content-center pb-0">
                 <Pagination aria-label="Page navigation example">
                     <PaginationItem>
                         <PaginationLink previous href="#">
@@ -90,8 +83,8 @@ const TasksList = (props) => {
                     </PaginationItem>
                 </Pagination>
             </CardFooter> */}
-        </Card>
-    )
+    </Card>
+  )
 }
 
 export default TasksList;

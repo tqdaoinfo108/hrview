@@ -1,3 +1,3 @@
-import { DatePickerExamples } from './DatePickerExamples';
+import {DatePickerExamples} from './DatePickerExamples';
 
 export default DatePickerExamples;
