@@ -26,10 +26,20 @@ const TasksList = (props) => {
     initData();
   }, [])
 
+  const handleChangeState = (id) => {
+    callApi(`todolist/changestate?id=${id}`, "GET", null).then(resState => {
+      console.log('Logging::: From Class: TrTableTasksList.js, Function: , Line: 56, Data Log::: ', resState);
+    })
+    let arr = [...listTask];
+    let itemFind = arr.find(x => x.data.toDoListID === id);
+    itemFind.isComplete = !itemFind.isComplete
+    setListTask(arr);
+  }
+
   // api/todolist/getall
-  const renderListTask = todoList.map((item) =>
-    <TrTableTasksList data={item}/>
-  );
+  // const renderListTask = listTask.map((item) =>
+  //
+  // );
 
   return (
     <Card className="mb-3">
@@ -49,7 +59,13 @@ const TasksList = (props) => {
           </tr>
           </thead>
           <tbody>
-          {renderListTask}
+          {
+            listTask.map((item) => {
+              return (
+                <TrTableTasksList key={item?.data?.toDoListID} data={item} onChangeState={handleChangeState}/>
+              )
+            })
+          }
           </tbody>
         </Table>
       </div>

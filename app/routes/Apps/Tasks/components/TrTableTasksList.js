@@ -1,16 +1,15 @@
 import React from 'react';
-import faker from 'faker/locale/en_US';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
 import {
-    Avatar,
-    Badge,
-    CustomInput,
-    DropdownItem,
-    DropdownMenu,
-    DropdownToggle,
-    UncontrolledButtonDropdown
+  Avatar,
+  Badge,
+  CustomInput,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  UncontrolledButtonDropdown
 } from './../../../../components';
 
 import {randomArray, randomAvatar} from './../../../../utilities';
@@ -46,16 +45,23 @@ const prioStatus = [
 ];
 
 const TrTableTasksList = (props) => {
+  console.log('Logging::: From Class: TrTableTasksList.js, Function: TrTableTasksList, Line: 49, Data Log::: ', props.data);
+
   return (
     <React.Fragment>
       <tr>
         <td className="align-middle">
-          <CustomInput type="checkbox" id={`TrTableTasksList-${props.id}`} label="" inline/>
+          {/*<Media  left className="mr-3">*/}
+          {/*<CustomInput className="pt-0 mt-0" type="checkbox" checked={props.isComplete ? 'checked' : ''} id={`taskMedia-${props.id}`} label="" />*/}
+          <CustomInput onClick={() => props.onChangeState(props?.data?.toDoListID)} checked={props?.data?.isComplete}
+                       type="checkbox" id={`TrTableTasksList-${props?.data?.id}`} label="" inline/>
+          {/*</Media>*/}
         </td>
         <td className="align-middle">
           <UncontrolledButtonDropdown>
             <DropdownToggle color="link" link size="sm" className="pl-0 mb-3 text-decoration-none">
-              {randomArray(prioStatus)}
+              {prioStatus[props?.data?.priority ? props?.data?.priority : 0]}
+              {/*{props?.data?.priority}*/}
             </DropdownToggle>
             <DropdownMenu>
               <DropdownItem header>Select Priority</DropdownItem>
@@ -80,21 +86,21 @@ const TrTableTasksList = (props) => {
         </td>
         <td className="align-middle">
           <div>
-            <span className="mr-2">#{faker.random.number()}</span>
+            <span className="mr-2">#{props?.data?.toDoListID}</span>
             <Link to="/apps/task-details" className="text-decoration-none">
-              {faker.hacker.phrase()}
+              {props?.data?.title}
             </Link>
           </div>
           <p className="mb-0">
                         <span className="mr-2">
-                            {faker.lorem.sentence()}
+                            {props?.data?.description}
                         </span>
             <Badge pill color={randomArray(badges)} className="mr-1">
-              {faker.commerce.department()}
+              {props?.data?.departmentName}
             </Badge>
-            <Badge pill color={randomArray(badges)} className="mr-1">
-              {faker.commerce.department()}
-            </Badge>
+            {/*<Badge pill color={randomArray(badges)} className="mr-1">*/}
+            {/*  {faker.commerce.department()}*/}
+            {/*</Badge>*/}
           </p>
         </td>
         <td className="align-middle">
@@ -105,7 +111,7 @@ const TrTableTasksList = (props) => {
           />
         </td>
         <td className="align-middle">
-          16-Jul-2016
+          {props?.data?.timeEnd?.substring(0, 10)}
         </td>
         <td className="align-middle text-right">
           <UncontrolledButtonDropdown className="align-self-center ml-auto">

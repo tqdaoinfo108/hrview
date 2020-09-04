@@ -40,7 +40,7 @@ const ProjectsSmHeader = (props ) => (
                     <Button color="primary" className="align-self-center" id="tooltipAddNew">
                         <i className="fa-fw fa fa-plus"></i>
                     </Button>
-                    // API modal api/todolist/create
+                    {/*// API modal api/todolist/create*/}
                     <UncontrolledTooltip placement="bottom" target="tooltipAddNew">
                         Add New
                     </UncontrolledTooltip>
