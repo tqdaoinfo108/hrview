@@ -120,7 +120,7 @@ const ProjectsDashboard = () => {
                     </div>
                     <Media>
                         <Media left className="mr-3">
-                            // API dashboard/get 
+                            {/*// API dashboard/get */}
                             <TinyDonutChart valueA={data.totalTodolistProcessing} valueB={data.totalTodolistLate} ValueC={data.totalTodolistComplete} />
 
                         </Media>

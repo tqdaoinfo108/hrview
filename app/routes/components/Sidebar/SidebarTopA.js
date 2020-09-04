@@ -12,6 +12,7 @@ import {
     DropdownMenu,
     DropdownItem
 } from './../../../components';
+import {callApi} from "../../../../core/callApi";
 
 
 const SidebarTopA = (props) => {
@@ -26,21 +27,23 @@ const SidebarTopA = (props) => {
             luserName = JSON.parse(luserName);
             setFullName(luserName); 
 
-            // nghe nghe
-            console.log(luserName); 
             let lcompanyName = await localStorage.getItem('companyName')  ;
             lcompanyName = lcompanyName ? JSON.parse(lcompanyName) : "";
             setCompanyName(lcompanyName);
 
             if(lcompanyName.length == null || lcompanyName.length == 0 ){    
-                let token = await localStorage.getItem('token');
-                token = JSON.parse(token);
-                axios.get('https://localhost:5000/api/company/get',{ headers: { Authorization: 'Bearer '+ token } }).then(
-                    res => {
-                        setCompanyName(res.data.companyName);
-                        localStorage.setItem('companyName',JSON.stringify(res.data.companyName));
-                    }
-                )
+                // let token = await localStorage.getItem('token');
+                // token = JSON.parse(token);
+                // axios.get('https://localhost:5000/api/company/get',{ headers: { Authorization: 'Bearer '+ token } }).then(
+                //     res => {
+                //         setCompanyName(res.data.companyName);
+                //         localStorage.setItem('companyName',JSON.stringify(res.data.companyName));
+                //     }
+                // )
+              callApi("company/get", "GET", null).then(res => {
+                setCompanyName(res.data.companyName);
+                localStorage.setItem('companyName',JSON.stringify(res.data.companyName));
+              })
             }
         }   
         initData();

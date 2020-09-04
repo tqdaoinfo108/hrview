@@ -16,6 +16,7 @@ import {
 
 import { HeaderAuth } from "../../components/Pages/HeaderAuth";
 import { FooterAuth } from "../../components/Pages/FooterAuth";
+import {toast, ToastContainer} from "react-toastify";
 // import {callApi} from "../../../../core/callApi";
 
 const Login = (props) => {
@@ -40,15 +41,12 @@ const Login = (props) => {
       
 //https://hrdotnet.azurewebsites.net/
     const onSubmit = () => {
-        console.log('Logging::: From Class: Login.js, Function: onSubmit, Line: 43, Data Log::: ', "ok");
-        // callApi("authencation/login", "POST", value).then(res => {
-        //     console.log('Logging::: From Class: Login.js, Function: , Line: 45, Data Log::: ',   res);
-        // })
         axios.post('https://hrdotnet.azurewebsites.net/api/authencation/login', value)
             .then(res => {
                     localStorage.setItem('token', JSON.stringify(res.data?.token));
                     localStorage.setItem('fullName', JSON.stringify(res.data?.fullName));
                     localStorage.setItem('companyID',JSON.stringify(res.data?.companyID));
+                    toast.success("Hello, " + res.data?.fullName);
                     setIsRedirect(true);
             });
     }
@@ -76,6 +74,7 @@ const Login = (props) => {
 
     return (
         <EmptyLayout>
+            <ToastContainer />
             <EmptyLayout.Section center>
                 { /* START Header */}
                 <HeaderAuth

@@ -18,6 +18,7 @@ import {
 import { CustomExportCSV } from './CustomExportButton';
 import { CustomSearch } from './CustomSearch';
 import { randomArray, randomAvatar } from '../../../../utilities';
+import {callApi} from "../../../../../core/callApi";
 
 const generateRow = (id) => ({
     id,
@@ -66,14 +67,18 @@ export class AdvancedTableB extends React.Component {
     componentDidMount() {
         // const dataValue ={};
         const initData = async () => {
-            let token = await localStorage.getItem('token');
-            token = JSON.parse(token);
-            await axios.get('https://localhost:5000/api/staff/getAll', { headers: { Authorization: 'Bearer ' + token } }).then(
-                res => {
-                    this.setState({ users: res.data })
-                    this.setState({ isLoaded: true })
-                }
-            )
+            callApi("staff/getAll", "GET", null).then(res => {
+                this.setState({ users: res.data })
+                this.setState({ isLoaded: true })
+            })
+            // let token = await localStorage.getItem('token');
+            // token = JSON.parse(token);
+            // await axios.get('https://localhost:5000/api/staff/getAll', { headers: { Authorization: 'Bearer ' + token } }).then(
+            //     res => {
+            //         this.setState({ users: res.data })
+            //         this.setState({ isLoaded: true })
+            //     }
+            // )
         }
         // this.props.state.users = dataValue;
         initData();

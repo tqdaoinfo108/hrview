@@ -15,6 +15,7 @@ import {callApi} from "../../../../core/callApi";
 
 const TasksList = (props) => {
     const [listTask, setListTask] = useState([]);
+    const [todoList, setTodoList] = useState([]);
 
     useEffect(() => {
         Moment.locale('vi');
@@ -24,13 +25,17 @@ const TasksList = (props) => {
                 setListTask(res.data);
             })
 
+            callApi("todolist/getall", "GET", null).then(res => {
+                setTodoList(res.data);
+            })
+
         }
         initData();
     }, [])
 
     // api/todolist/getall
-    const renderListTask = listTask.map((listTask) =>
-        <TrTableTasksList />
+    const renderListTask = todoList.map((item) =>
+        <TrTableTasksList data={item} />
     );
 
     return (
