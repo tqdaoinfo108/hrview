@@ -18,13 +18,14 @@ const TasksList = (props) => {
         setListTask(res.data);
       })
 
-      callApi("todolist/getall", "GET", null).then(res => {
-        setTodoList(res.data);
-      })
-
     }
     initData();
   }, [])
+
+  useEffect(()=>{
+    console.log('Logging::: From Class: TasksList.js, Function: , Line: 26, Data Log::: ', props.dataList);
+    setListTask(props.dataList)
+  }, [props.dataList])
 
   const handleChangeState = (id) => {
     callApi(`todolist/changestate?id=${id}`, "GET", null).then(resState => {

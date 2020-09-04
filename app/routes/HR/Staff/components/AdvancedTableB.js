@@ -213,7 +213,7 @@ export class AdvancedTableB extends React.Component {
                         outline
                         onClick={this.handleAddRow.bind(this)}
                       >
-                        // API api/staff/create
+                        {/*// API api/staff/create*/}
                         Thêm <i className="fa fa-fw fa-plus"></i>
                       </Button>
                     </ButtonGroup>

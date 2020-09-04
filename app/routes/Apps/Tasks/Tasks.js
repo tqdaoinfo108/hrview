@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'moment';
 
@@ -9,11 +9,24 @@ import {HeaderMain} from "../../components/HeaderMain";
 import TasksList from './TasksList';
 import {ProjectsLeftNav} from "../../components/Projects/ProjectsLeftNav";
 import {ProjectsSmHeader} from "../../components/Projects/ProjectsSmHeader";
+import {callApi} from "../../../../core/callApi";
 
 const Tasks = (props) => {
+  const [dataList, setDataList] = useState([])
+
   useEffect(() => {
     Moment.locale('vi');
   }, [])
+
+  const updateListTask = (taskList) => {
+    setDataList(taskList)
+  }
+
+  const onLoadTaskList = () => {
+    callApi("todolist/getall", "GET", null).then(res => {
+      setDataList(res.data);
+    })
+  }
 
   return (
     <React.Fragment>
@@ -32,9 +45,11 @@ const Tasks = (props) => {
               subTitleLink="/apps/projects/list"
               title='Danh sách công việc'
               linkList="/apps/tasks/list"
+              // dataList={dataList}
+              onAddItemList={onLoadTaskList}
             />
 
-            <TasksList/>
+            <TasksList dataList={dataList}/>
           </Col>
         </Row>
       </Container>
