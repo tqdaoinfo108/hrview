@@ -1,7 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import axios from 'axios';
-
+import axios from "axios";
 import {
     Form,
     FormGroup,
@@ -17,6 +16,7 @@ import {
 
 import { HeaderAuth } from "../../components/Pages/HeaderAuth";
 import { FooterAuth } from "../../components/Pages/FooterAuth";
+// import {callApi} from "../../../../core/callApi";
 
 const Login = (props) => {
     const [userName, setUserName] = useState("");
@@ -40,11 +40,15 @@ const Login = (props) => {
       
 //https://hrdotnet.azurewebsites.net/
     const onSubmit = () => {
-        axios.post('https://localhost:5000/api/authencation/login', value)
+        console.log('Logging::: From Class: Login.js, Function: onSubmit, Line: 43, Data Log::: ', "ok");
+        // callApi("authencation/login", "POST", value).then(res => {
+        //     console.log('Logging::: From Class: Login.js, Function: , Line: 45, Data Log::: ',   res);
+        // })
+        axios.post('https://hrdotnet.azurewebsites.net/api/authencation/login', value)
             .then(res => {
-                    localStorage.setItem('token', JSON.stringify(res.data.token));
-                    localStorage.setItem('fullName', JSON.stringify(res.data.fullName));
-                    localStorage.setItem('companyID',JSON.stringify(res.data.companyID));
+                    localStorage.setItem('token', JSON.stringify(res.data?.token));
+                    localStorage.setItem('fullName', JSON.stringify(res.data?.fullName));
+                    localStorage.setItem('companyID',JSON.stringify(res.data?.companyID));
                     setIsRedirect(true);
             });
     }

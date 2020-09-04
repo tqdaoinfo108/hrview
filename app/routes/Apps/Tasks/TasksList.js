@@ -1,6 +1,5 @@
 import React, { useEffect,useState } from 'react';
 import Moment from 'moment';
-import axios from 'axios';
 
 import {
     Pagination,
@@ -12,6 +11,7 @@ import {
 } from './../../../components';
 
 import { TrTableTasksList } from "./components/TrTableTasksList";
+import {callApi} from "../../../../core/callApi";
 
 const TasksList = (props) => {
     const [listTask, setListTask] = useState([]);
@@ -20,14 +20,13 @@ const TasksList = (props) => {
         Moment.locale('vi');
 
         const initData = async () => {
-            let token = await localStorage.getItem('token');
-            token = JSON.parse(token);
-            axios.get("https://localhost:5000/api/dashboard/gettask", { headers: { Authorization: 'Bearer ' + token } }).then(res => {
+            callApi("dashboard/gettask", "GET", null).then(res => {
                 setListTask(res.data);
-            });
+            })
+
         }
         initData();
-    })
+    }, [])
 
 
     const renderListTask = listTask.map((listTask) =>

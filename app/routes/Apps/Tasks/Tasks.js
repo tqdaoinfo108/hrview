@@ -13,11 +13,12 @@ import { HeaderMain } from "../../components/HeaderMain";
 import TasksList from './TasksList';
 import { ProjectsLeftNav } from "../../components/Projects/ProjectsLeftNav";
 import { ProjectsSmHeader } from "../../components/Projects/ProjectsSmHeader";
+import {callApi} from "../../../../core/callApi";
 
 const Tasks = (props) => {
     useEffect(() => {
         Moment.locale('vi');
-    }, )
+    }, [])
 
     return (
         <React.Fragment>

@@ -35,6 +35,7 @@ import {
 } from "../../components/Timeline/TimelineMini"
 import { DraggableProjects } from './DraggableProjects';
 import axios from 'axios';
+import {callApi} from "../../../../core/callApi";
 
 const ProjectsDashboard = () => {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -64,16 +65,25 @@ const ProjectsDashboard = () => {
     useEffect(() => {
 
         const initData = async () => {
-            let token = await localStorage.getItem('token');
-            token = JSON.parse(token);
-            axios.get("https://localhost:5000/api/dashboard/get", { headers: { Authorization: 'Bearer ' + token } }).then(res => {
+
+            callApi("dashboard/gettask", "GET", null).then(res => {
+                console.log('Logging::: From Class: ProjectsDashboard.js, Function: , Line: 70, Data Log::: ',   res);
+                setListTask(res.data);
+            })
+
+            callApi("dashboard/get", "GET", null).then(res => {
                 setData(res.data);
                 setIsDashboard01(true);
-            });
-
-            axios.get("https://localhost:5000/api/dashboard/gettask", { headers: { Authorization: 'Bearer ' + token } }).then(res => {
-                setListTask(res.data);
-            });
+            })
+            // let token = await localStorage.getItem('token');
+            // token = JSON.parse(token);
+            // axios.get("https://localhost:5000/api/dashboard/get", { headers: { Authorization: 'Bearer ' + token } }).then(res => {
+            //
+            // });
+            //
+            // axios.get("https://localhost:5000/api/dashboard/gettask", { headers: { Authorization: 'Bearer ' + token } }).then(res => {
+            //     setListTask(res.data);
+            // });
         }
         initData();
     }, [])
