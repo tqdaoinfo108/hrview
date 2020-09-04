@@ -152,6 +152,7 @@ export class AdvancedTableB extends React.Component {
     render() {
         const { isLoaded } = this.state;
         if (isLoaded) {
+            // API  api/staff/getall
             const columnDefs = this.createColumnDefinitions();
 
             const expandRow = {
@@ -217,6 +218,7 @@ export class AdvancedTableB extends React.Component {
                                                 outline
                                                 onClick={this.handleAddRow.bind(this)}
                                             >
+                                                // API api/staff/create
                                                 Thêm <i className="fa fa-fw fa-plus"></i>
                                             </Button>
                                         </ButtonGroup>

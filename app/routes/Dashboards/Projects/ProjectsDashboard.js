@@ -129,6 +129,7 @@ const ProjectsDashboard = () => {
                     </div>
                     <Media>
                         <Media left className="mr-3">
+                            // API dashboard/get 
                             <TinyDonutChart valueA={data.totalTodolistProcessing} valueB={data.totalTodolistLate} ValueC={data.totalTodolistComplete} />
 
                         </Media>
@@ -154,6 +155,7 @@ const ProjectsDashboard = () => {
                     </div>
                     <Media>
                         <Media left className="mr-3">
+                            // API dashboard/get 
                             <TinyDonutChartAllProjects valueA={data.totalCalendarExpected} valueB={data.totalCalendarComplete} ValueC={data.totalCalendar} />
 
                         </Media>

@@ -29,7 +29,7 @@ This **Airframe** project is a typical Webpack based React app, [React Router](h
 - **120+ Unique Pages** designed to make use of them directly in your application.
 - **2 Starters** so that you can immediately work with the components that are necessary for your application.
 
-# Author
+# Authorsfsf
 
 **Tomasz Owczarczyk:**
 
