@@ -26,15 +26,16 @@ const firestore = firebase.firestore();
 
 const storage = firebase.storage();
 
-const messaging= firebase.messaging();
+let messaging = null;
+// let messaging = firebase.messaging();
 
 
-if (firebase.messaging.isSupported()) {
-    console.log(firebase)
-    messaging = firebase.messaging();
-    messaging.usePublicVapidKey(firebaseConfig.webPushCert);
-}
+// if (firebase.messaging.isSupported()) {
+//     console.log(firebase)
+//     messaging = firebase.messaging();
+//     messaging.usePublicVapidKey(firebaseConfig.webPushCert);
+// }
 
-console.log("messaging", messaging)
+// console.log("messaging", messaging)
 
 export { database, firestore, storage, messaging, firebaseConfig };
