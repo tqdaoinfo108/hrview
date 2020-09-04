@@ -67,7 +67,6 @@ const ProjectsDashboard = () => {
         const initData = async () => {
 
             callApi("dashboard/gettask", "GET", null).then(res => {
-                console.log('Logging::: From Class: ProjectsDashboard.js, Function: , Line: 70, Data Log::: ',   res);
                 setListTask(res.data);
             })
 
@@ -75,27 +74,19 @@ const ProjectsDashboard = () => {
                 setData(res.data);
                 setIsDashboard01(true);
             })
-            // let token = await localStorage.getItem('token');
-            // token = JSON.parse(token);
-            // axios.get("https://localhost:5000/api/dashboard/get", { headers: { Authorization: 'Bearer ' + token } }).then(res => {
-            //
-            // });
-            //
-            // axios.get("https://localhost:5000/api/dashboard/gettask", { headers: { Authorization: 'Bearer ' + token } }).then(res => {
-            //     setListTask(res.data);
-            // });
+
         }
         initData();
     }, [])
 
     const onClickItemTask = async(number) => {
-        let token = await localStorage.getItem('token');
-        token = JSON.parse(token);
-        axios.get("https://localhost:5000/api/todolist/changestate?id=4", { headers: { Authorization: 'Bearer ' + token } }).then(res => {
-            axios.get("https://localhost:5000/api/dashboard/gettask", { headers: { Authorization: 'Bearer ' + token } }).then(res => {
-                setListTask(res.data);
-            });
-        });
+        callApi("todolist/changestate?id=4", "GET", null).then(resState => {
+            console.log('Logging::: From Class: ProjectsDashboard.js, Function: resState => de lam gi vay????, Line: 84, Data Log::: ', resState);
+            callApi("dashboard/gettask", "GET", null).then(resTask => {
+                setListTask(resTask.data);
+            })
+        })
+
     }
 
     const renderListTask = listTask.map(listTask =>
